@@ -9,7 +9,7 @@ import random
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.pin')
+app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///' + os.path.join(basedir, 'db.pin')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Init db
 db = SQLAlchemy(app)
@@ -39,7 +39,7 @@ pins_schema = PinSchema(many=True)
 
 
 # Generate  pin
-@app.route('/api/v1/generate', methods=['GET'])
+@app.route('/', methods=['GET'])
 def add_pin():
   #serial_default =0000000000
   pin = ''.join([random.choice(string.digits) for n in range (15)])
